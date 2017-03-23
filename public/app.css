@@ -24,7 +24,7 @@
 /*导航栏高*/
 
 header {
-    height: 5rem;
+    height: 7rem;
 }
 
 
@@ -34,12 +34,9 @@ header {
     width: 7.5em;
 }
 
-.navbar-left {
-    margin-left: 200px;
-}
-
-.navbar-right {
-    margin-right: 200px;
+#navbar-collapse-div {
+    padding-left: 200px;
+    padding-right: 200px;
 }
 
 .navbar-default .navbar-nav>li>a {

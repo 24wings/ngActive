@@ -1,5 +1,5 @@
 import express = require('express');
-import { playerModel, recordModel } from '../models';
+import { userModel, IUser } from '../models';
 
 var router = express.Router();
 
@@ -8,26 +8,23 @@ router.route('/')
         res.render('signup');
     })
     .post(async (req, res, next) => {
-        var isExisit = await playerModel.findOne({ phone: req.body.phone }).count();
-        console.log(req.body);
+        var { name, phone, password, school, specil, grader } = req.body;
+        var isExisit = await userModel.count({ phone }).exec();
         if (isExisit) {
             res.json({
                 issuccess: false,
-                data: '该手机号已经注册'
+                data: '该手机号已经存在'
             });
         } else {
-            req.body.age = parseInt(req.body.age);
-            var newPlayer = await new playerModel(req.body).save();
-
-            var currentRecord = await new recordModel({ playerId: newPlayer._id }).save();
-            newPlayer.currentRecord = currentRecord._id;
-            res.locals._id = newPlayer._id;
-            // 本地存储用户_id
+            var user = await new userModel({ name, phone, password, school, specil, grader }).save();
+            req.session.user = user;
             res.json({
                 issuccess: true,
-                data: newPlayer._id
+                data: user
             });
         }
+
+
     });
 
 export { router as signupRouter };

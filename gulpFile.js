@@ -10,26 +10,28 @@ var sass = require('gulp-sass');
 
 var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task("default", ["compile", "watch", "nodemon"]);
+gulp.task("default", ["compile", "watch",
+    "nodemon"
+]);
 
 
-gulp.task("watch", function() {
+gulp.task("watch", function () {
 
-    return gulp.watch(["src/**/*.*", 'views/**/*.jade'], ["compile"]);
+    return gulp.watch(["./src/**/*.ts", './views/**/*.jade'], ["compile"]);
 
 });
 gulp.task("watch-scss", () => {
     return gulp.watch(['./sass/**/*.scss', './sass/bootstrap-sass/assets/**/*.scss'], ['css', 'fonts']);
 })
 
-gulp.task("compile", function() {
+gulp.task("compile", function () {
     return gulp.src('src/**/*.ts')
         .pipe(tsProject())
         .pipe(gulp.dest('build'));
 
 });
 
-gulp.task("nodemon", function() {
+gulp.task("nodemon", function () {
     nodemon({
         script: "build/www",
         exec: ' set DEBUG=*,-not_this &node --debug ',
@@ -48,7 +50,7 @@ var config = {
     publicDir: './public',
 };
 
-gulp.task('css', function() {
+gulp.task('css', function () {
     return gulp.src('./sass/app.scss')
         .pipe(sass({
             includePaths: [config.bootstrapDir + '/assets/stylesheets'],
@@ -56,7 +58,7 @@ gulp.task('css', function() {
         .pipe(gulp.dest(config.publicDir + '/css'));
 });
 
-gulp.task('fonts', function() {
+gulp.task('fonts', function () {
     return gulp.src(config.bootstrapDir + '/assets/fonts/**/*')
         .pipe(gulp.dest(config.publicDir + '/fonts'));
 });
