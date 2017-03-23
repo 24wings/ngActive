@@ -1,0 +1,31 @@
+.main-sidebar
+    .sidebar
+        .user-panel
+            .pull-left.image
+                img(src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg")
+            .pull-left.info
+                p 用户名
+                a 
+                    i.fa.fa-circle.text-success 
+                    | 在线
+        form(method='get').sidebar-form
+            .input-group
+                input(type='text',placeholder='搜索').form-control
+                span.input-group-btn
+                    button(type='submit',name='search')#search-btn.btn.btn-flat: i.fa.fa-search
+        ul.sidebar-menu
+            li.header HEADER
+            li.active.treeview
+                 a: span 管理数据
+                 ul.treeview-menu
+                    li: a(href='/admin/tables/user') 用户
+                    li: a 用户
+            li: a: span 链接
+            li.treeview
+                a 
+                    span 多行
+                        i.fa.fa-angle-left.pull-right
+                ul.treeview-menu
+                    li: a  链接
+                    li: a  链接
+                

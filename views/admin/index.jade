@@ -1,0 +1,72 @@
+extends layouts/base-layout
+block append  content
+    .content-wrapper(style={'min-height': '901px'})
+        section.content-header
+             h1 管理面板 
+                 small  2.0版本
+             ol.breadcrumb
+                 li: a:  i.fa.fa-dashboard
+                 | 主页
+        .content
+            .row
+                .col-md-3.col-sm-6.col-xs-12
+                    .info-box
+                        .info-box-icon.bg-blue: i.fa.fa-envelope-o
+                        .info-box-content
+                            span.info-box-text 邮件
+                            span.info-box-number 93,139
+                .col-md-3.col-sm-6.col-xs-12
+                    .info-box
+                        .info-box-icon.bg-green: i.fa.fa-files-o
+                        .info-box-content
+                            span.info-box-text 文件
+                            span.info-box-number 93,139
+                .col-md-3.col-sm-6.col-xs-12
+                    .info-box
+                        .info-box-icon.bg-yellow: i.fa.fa-flag-o
+                        .info-box-content
+                            span.info-box-text 分类
+                            span.info-box-number 93,139
+                .col-md-3.col-sm-6.col-xs-12
+                    .info-box
+                        .info-box-icon.bg-red: i.fa.fa-star-o
+                        .info-box-content
+                            span.info-box-text 收藏
+                            span.info-box-number 93,139
+            .row
+                table#example.display(cellspacing='0',width='100%')
+                    thead
+                        tr
+                            th name
+                            th name
+                            th name
+                            th name
+                            th name
+                    tfoot 
+                        tr
+                            th name
+                            th name
+                            th name
+                            th name
+                            th name
+                    tbody
+                        tr
+                            td tiger Nixon
+                            td tiger Nixon
+                            td tiger Nixon
+                            td tiger Nixon
+                            td tiger Nixon    
+                        tr
+                            td Aiger Nixon
+                            td Aiger Nixon
+                            td Aiger Nixon
+                            td Aiger Nixon
+                            td Aiger Nixon    
+block append foot
+block append script
+    script.
+        $(function(){
+            $('#example').DataTable();
+        });
+
+         

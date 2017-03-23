@@ -1,0 +1,78 @@
+extends layouts/base-layout
+block append style
+    style(type='text/css').
+         .remind{
+            background: #ec708c !important;
+            color:#fff !important;
+            font-weight: 100 !important;
+            }
+         .thumb{
+            display: block;
+            position: relative;
+            height: 60px;
+            }
+         .thumb img{
+                width: 56px;
+                height: 56px;
+                display:block;
+                float:left;
+            }
+         .thumb h2{
+            font-size: 1rem;
+            width: calc(100% - 61px);
+            text-align: center;
+            padding: 0;
+            line-height: 0px;
+         }
+         .thumb p{
+            padding-left:90px;
+            overflow: inherit;
+            margin: 0 0 2px;
+            font-size: 0.5rem;
+            line-height: normal;
+            text-overflow: inherit;
+            color: #8e9093;
+         }
+block  content
+    //- 本地存储用户的_id，以后每次登录到注册页面都会自动跳转到这个页面
+    div(data-role='page')
+        div(data-role='main',data-id='#{_id}')#id
+            .ui-bar.ui-bar-a.ui-corner-all
+                img(src='http://teach.wanviv.com:8080/assets/images/1.png')
+                .ui-btn 匹配指数  99
+                .remind.ui-btn.ui-btn-a   
+                    case player.currentRecord.state
+                        when 2 
+                            p 您已经匹配成功
+                        default 
+                            p 默认状态
+                #{player}
+                #{toPlayer}
+            .ui-body.ui-body-a.ui-corner-all
+                .thumb
+                    img(src='http://teach.wanviv.com:8080/assets/images/girl.jpg')
+                    h2 【情侣任务】
+                    p. 
+                        你可能会收到一封来自于Ta的小情书?
+                .thumb 
+                    img(src='http://teach.wanviv.com:8080/assets/images/task1.jpg')
+                    h2 【签到打开】
+                    p. 
+                        情侣们每日记得打卡哦，活动结束后可以获得专属你们的礼物~
+        div(data-role='footer',data-position='fixed')
+            div(data-role='navbar')
+                ul
+                  li: button(data-icon='gear',onclick='goBack()') 个人信息
+                  li: button(data-icon='star') 退款
+ block  myScript
+    script.
+        window.onload=function(){ 
+            console.log('hello world');
+        }
+                
+
+        
+
+    
+    
+

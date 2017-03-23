@@ -1,0 +1,66 @@
+extends layouts/base-layout
+block append  content
+    .content-wrapper(style={'min-height': '901px'})
+        .content
+            .row
+            .row
+                .panel.panel-primary
+                    .panel-heading #{title}
+                    table#example.display.dataTables_wrapper.form-inline.dt-bootstrap(cellspacing='0',width='100%')
+                        thead
+                            tr
+                                each field,i in fields 
+                                    th  #{field.label}
+                        tbody
+                             each item in data
+                                 tr
+                                     each field in fields
+                                         td #{item[field.key]}
+block append foot
+block append script
+    script.
+          $(function(){
+            window.table =$('#example').DataTable({
+                "dom": '<"toolbar">frtip'
+            });
+            /**工作具体*/
+            $("div.toolbar").html(`
+            <button id="info-btn" class="btn btn-info">查看</button> 
+            <button id="create-btn" class="btn btn-success"> 增加</button>
+            <button id="del-btn" class="btn btn-warning"   >删除</button>
+            `);
+            $('#example tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+             $('#del-btn').click( function () {
+                var data =table.row('.selected').data();
+                console.log(data);
+                    $.ajax('/api/rest/#{tableName}?_id='+data[0],{
+                        method:'delete',
+                        success:function(rtn){
+                            console.log(rtn);
+                            location.reload();
+                        }
+                    })
+                });
+            $('#info-btn').click(function(){
+                var data = table.row('.selected').data();
+                if(!data){
+                    alert('请先选中一条数据');
+                    return;
+                }else{
+                    console.log(data);
+                    location.href='/admin/tables/#{tableName}/'+data[0];
+                }
+            });
+            $('#create-btn').click(function(){
+                    location.href='/admin/tables/#{tableName}/0';
+            });
+            
+             });
+         

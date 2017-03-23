@@ -1,0 +1,50 @@
+extends layouts/base-layout
+block append  content
+    .content-wrapper(style={'min-height': '901px'})
+        section.content-header
+            h1 当前的路径 #{path}
+        //- 如果有数据则显示数据
+        if(data)
+            .row
+                .col-md-6
+                    .box.box-info
+                        .box-header.with-border
+                            .box-title #{title}
+                        .form-horizontal            
+                            .box-body
+                                each field in fields
+                                    if(field.key=='_id')
+                                    else
+                                        .form-group
+                                            label.col-sm-2.control-label #{field.label}
+                                            .col-sm-10
+                                                input(type='text',placeholder='#{field.label}',value='#{data[field.key]}',name='#{field.key}').form-control
+                            .box-footer
+                                button(type="submit").btn.btn-default 还原
+                                button(type="submit").btn.btn-info.pull-right 确定
+                            
+        else
+            .row
+                .col-md-6
+                    .box.box-info
+                        .box-header.with-border
+                            .box-title #{title}
+                        form.form-horizontal(method='POST')
+                            .box-body
+                                each field in fields
+                                    if(field.key=='_id')
+                                    else
+                                        .form-group
+                                            label.col-sm-2.control-label #{field.label}
+                                            .col-sm-10
+                                                input(type='text',placeholder='#{field.label}',value='',name='#{field.key}').form-control
+                             .box-footer
+                                button(type="submit").btn.btn-default 还原
+                                button(type="submit").btn.btn-success.pull-right 创建
+                            
+                         
+
+            
+                        
+
+         

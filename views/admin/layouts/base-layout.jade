@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title 后台管理
+        meta(content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",name="viewport")
+        link(rel='stylesheet',href='/libs/admin-lte/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet',href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css')
+        link(rel='stylesheet',href='/libs/admin-lte/dist/css/skins/_all-skins.min.css')
+        link(rel='stylesheet',href='/libs/admin-lte/dist/css/AdminLTE.min.css')
+        link(rel='stylesheet',href='/libs/admin-lte/plugins/datatables/jquery.dataTables.css')
+        link(rel='stylesheet',href='/libs/admin-lte/plugins/datatables/dataTables.bootstrap.css')
+        link(rel='stylesheet',href='/css/admin.css')
+    body(data-spy="scroll" data-target="#scrollspy").skin-blue.fixed
+        .warpper
+            block navbar
+                include navbar
+                include left-sidebar
+                include right-sidebar
+
+            block content
+                
+            block foot
+            block script
+                script.
+                    var AdminLTEOptions = {
+                        //Enable sidebar expand on hover effect for sidebar mini
+                        //This option is forced to true if both the fixed layout and sidebar mini
+                        //are used together
+                        sidebarExpandOnHover: true,
+                        //BoxRefresh Plugin
+                        enableBoxRefresh: true,
+                        //Bootstrap.js tooltip
+                        enableBSToppltip: true
+                    };
+                script(src="/libs/jquery/dist/jquery.min.js")
+                script(src='/libs/admin-lte/bootstrap/js/bootstrap.min.js')
+                script(src='/libs/admin-lte/dist/js/app.min.js')
+                script(src='/libs/admin-lte/plugins/fastclick/fastclick.min.js')
+                script(src='/libs/admin-lte/plugins/slimscroll/jquery.slimscroll.min.js')
+                script(src='/libs/admin-lte/plugins/datatables/jquery.dataTables.min.js')
+                script(src='/libs/admin-lte/plugins/datatables/dataTables.bootstrap.min.js')
+            
