@@ -13,6 +13,17 @@ var workSchema = new mongoose.Schema({
             filename: String
         }], default: []
     },
+    banner: {
+        type: {
+            url: String,
+            rootPath: String,
+            filename: String
+        }
+    },
+    // 评星的数量
+    star: { type: Number, default: 0 },
+    // 评星的人
+    lover: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     creatDt: { type: Date, default: Date.now }
 });
 

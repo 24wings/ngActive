@@ -1,0 +1,25 @@
+extends layouts/base-layout
+block append content
+    .container
+        h2.text-center  上传你的作品吧,#{user.name}
+    
+
+    .container
+        form(action='/works/addWork/#{user._id}',method='POST',enctype="multipart/form-data")
+            .form-group
+                label 作品名字
+                input.form-control(type='text',name='name',required='required')#name
+            .form-group
+                label 简述
+                input.form-control(type='text',name='summary',required='required')#summary
+            .form-group
+                label 详细描述
+                input.form-control(type='text',name='detail',required='required')#detail
+            .form-group
+                label  作品的文件,请将首页的文件名改为 index.html
+                input.form-control(type='file',name='files',required='required')#files
+            .form-group
+                label 给你的作品插入一张图片海报吧
+                input.form-control(type='file',name='banner',required='required')#banner
+            button.btn.btn-success(type='submit') 提交
+            

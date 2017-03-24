@@ -1,0 +1,19 @@
+extends layouts/base-layout
+block append content
+  h1 所有的作品
+  .container
+    .row
+      each work in works
+        .col-xs-6.col-md-4
+          a.thunmbnail(href='#{work.banner.rootPath.substring(6)}index.html',target='_blank')
+            img(src="#{work.banner.url}")
+            .caption
+              h3  简介:   #{work.summary}
+              p   描述  #{work.detail}
+              p
+                a.btn.btn-primary.pull-left(href='#{work.banner.rootPath.substring(6)}index.html',target='_blank') 查看
+                a.btn.btn-success.pull-right(onclick='addStar("#{work._id}")'): i.glyphicon.glyphicon-heart  点赞
+                a.btn.btn-link.pull-right: i.glyphicon.glyphicon-star #{work.lover.length} 
+                
+block append script
+  script(src='/scripts/index.js')

@@ -12,7 +12,7 @@ import { indexRouter } from './routes/index';
 import { signupRouter } from './routes/signup';
 import { signinRouter } from './routes/signin';
 import { worksRouter } from './routes/works';
-
+import { userRouter } from './routes/user';
 
 
 var app = express();
@@ -22,7 +22,7 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 }
 }));
 // view engine setup
-app.set('views', path.resolve(__dirname, '../views'));
+app.set('views', path.resolve(__dirname, '../src/views/'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -56,6 +56,7 @@ app.use('/', indexRouter);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/works', worksRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

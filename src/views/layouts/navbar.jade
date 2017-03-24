@@ -13,12 +13,17 @@ header
             //- 主要的菜单
             .collapse.navbar-collapse.navbar_center#navbar-collapse-div
                 .nav.navbar-nav.navbar-left
-                    li: a   投票
+                    li: a(href='/')   投票
                     li: a   抽奖
                 .nav.navbar-nav.navbar-right
                     if user
-                        li: a 欢迎,#{user.name}
-                        li: a(href='/works/#{user._id}')  发布作品
+                        li.dropdown
+                            a.dropdown-toggle(data-toggle='dropdown')  欢迎,#{user.name} 
+                                    span.caret
+                            ul.dropdown-menu
+                                li: a(href='/works/#{user._id}') 我的作品
+                                li: a(href='/works/addWork/#{user._id}')  管理作品
+                                
                     else 
                         li: a(href="/signin")    登录
                         li: a(href="/signup")    注册

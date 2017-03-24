@@ -1,0 +1,28 @@
+extends layouts/base-layout
+block append style
+    style.
+      
+block append content
+    if user
+      .jumbotron.text-center
+        h2 欢迎来到作品上传空间,上传你的作品
+        p: a.btn.btn-primary.btn-lg     
+    else
+
+    .container
+        .row
+            each work in works
+                .col-xs-6.col-md-4
+                    a.thunmbnail(href='#{work.banner.rootPath.substring(6)}index.html',target='_blank')
+                        img(src="#{work.banner.url}")
+                        .caption
+                            h3  简介:   #{work.summary}
+                            p   描述  #{work.detail}
+                            p
+                                a.btn.btn-primary.pull-left(href='#{work.banner.rootPath.substring(6)}index.html',target='_blank') 查看
+                                a.btn.btn-danger.pull-right(onclick="deleteWork('#{work._id}')")  删除
+            .col-xs-6.col-md-4
+                a.thumbnail.add-btn(href='/works/addWork/#{user._id}')
+                    img(src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAflBMVEX///9Rn9+OueY9kMQZhL41lNtZo+BNnd9qqOGGtORIl9J2reTr8vpgpOGGteM7ltxfnMoAf7xClMvk7vgji8wAerl3sOOoyN4ghsSDsuZKlcabwNquzN8tisFspsyBsNK70+bO4OuMs9pwpNOCrNfY5++WvNvw9ffX5vQ5ktGk3hrVAAADZklEQVRoge3b23biIBgFYNHKIZRQjcXGjj1MZ6bj+7/gAIlKEjAkLT83s5e96Grj505IJNguFpMiUShy2hNNjHWJJwAuZzUzqetacc6VDV6ndXUoa2L1snnUMrFbVdW9L9UprRv8ye6/C+I+JXaJFKwfIklyFxO+7EURhHO4GGn3DtxVKI8rrLuBdmtk3UdoV1j3E9pl9t1X/IZ2ReO+Q7ukcd+AxxVtZjl0D+sy0rrPsC5tXfwK655nk/gF9HrFM7n4Mn0+QLqKXNwVpHutC+oqlMd16haArnN0QV2nLtrCue7RhXRFHrdGeVyRx2UdFq2g3G5duL4kT1+K8rg9tgByKcnjokHfA8R9qOq7+v4o8bqZdbHHTbx+ZVxF8rjDujNcabNe68dopCQLjDysdkncE5gvk4XeSFYTXqdPNW58KrO4enUJjoqX1XBUiMeVvmVlz0JzIFEby7NbLBCmwrqYRiVUOG5j6+rXvl0gsWT35lu2jAgXAVbfeqvxzZmB7mnrlpEuoyi4m82eRnTsObpuXF8lbqEtjW/T5dldRbqs/4YblAm+sb/PbhHncjxeNWp/ty6JcUeOqj+Yll/rq/AM1ZYWg3Xbq7u97bLg2RoXWs9xazGvqlsa83KaW/re7WbRoi4H7irgzhpLYfoyvlu38LvTTpsoGvMx91urOjIx128WctW3V3VoPb4bd9t1yzRVncjGXbnuF8/V2a5M3PXiVqeum55F8lPnb+NiTqrbblEUW50i/Hx6gMbloLNdWbc7nxQmuMGsdt2mCM8no91LevPn6v1t//z68uD5zeMP+xteeIZrpvA7naenzebRZLPZ3Hmz0xN+EnSP/o1CGZ/ed6Lvj3wzHoj77jqTW/LhiQ7ilpn6DhaRoFw22NEwbn+REMZl/TVguL6DwlBu/whDuTnWJ5vbFwLtimbaCd63dSm0S9tpdia3uwSd3F1fXAba9+p2rh2QLoN1xdJTGHBcdQqDuk5hWPd6sYQcV0vnE29gl2dyl7nc88US2mVwfburjjST2060ANzeqrbI5DaF4d2mMMB1su+qTK69WAK4g+Vx8+4A0dfz1+3ylN71Zn9MPp7zuLn6ZnP9/43zJ/nxlbw3mktW/vo4Jh/PyD1/f55zSO+2n5h/PLgBcM2qtG9hd6L7D6JXUUiz/RX7AAAAAElFTkSuQmCC")
+block append script
+    script(src='/scripts/works.js')
