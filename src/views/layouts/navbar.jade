@@ -4,17 +4,25 @@ header
             .navbar-header
                 a.navbar-brand
                     img(src="https://tslang.cn/assets/images/logo_nocircle.svg").navbar-logo
-                button.navbar-toggle.pull-left(data-toggle='collapse',data-target="#navbar-collapse-div")
+                button.navbar-toggle.pull-left(data-toggle='collapse',data-target="#navbar-collapse-div").hidden-xs
                     span.sr-only
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
+                    //- 手机上的上传按钮
+                .mobile-navbar.nav.navbar-nav.navbar-right(style={'margin-right': '45px'})
+                    if user
+                        li: a(href='/works/#{user._id}') 我的作品
+                    else
+                        li(style={float:'right'}): a(href='/signin')   登录
+                        li(style={float:'right'}): a(href='/signup')   注册
+                    
+                    
             //- img(src="https://github.com/Microsoft/TypeScript")
             //- 主要的菜单
-            .collapse.navbar-collapse.navbar_center#navbar-collapse-div
+            .collapse.navbar-collapse.navbar_center#navbar-collapse-div.hidden-xs
                 .nav.navbar-nav.navbar-left
                     li: a(href='/')   投票
-                    li: a   抽奖
                 .nav.navbar-nav.navbar-right
                     if user
                         li.dropdown
@@ -23,7 +31,7 @@ header
                             ul.dropdown-menu
                                 li: a(href='/works/#{user._id}') 我的作品
                                 li: a(href='/works/addWork/#{user._id}')  管理作品
-                                
                     else 
                         li: a(href="/signin")    登录
                         li: a(href="/signup")    注册
+            
